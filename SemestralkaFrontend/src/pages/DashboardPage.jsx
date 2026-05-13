@@ -57,21 +57,45 @@ function DashboardPage() {
 
     const t = translations[language];
 
-    const saveSettings = () => {
-        localStorage.setItem(
-            "baseCurrency",
-            baseCurrency
-        );
+    const saveSettings = async () => {
+        try {
+            await api.put("/settings", {
+                baseCurrency,
+                selectedCurrencies:
+                    selectedCurrencies.join(","),
+            });
 
-        localStorage.setItem(
-            "selectedCurrencies",
-            JSON.stringify(selectedCurrencies)
-        );
+            localStorage.setItem(
+                "language",
+                language
+            );
 
-        localStorage.setItem(
-            "language",
-            language
-        );
+            alert("Settings saved");
+        }
+        catch (err) {
+            console.log(err);
+
+            alert("Unable to save settings");
+        }
+    };
+
+    const loadSettings = async () => {
+        try {
+            const response =
+                await api.get("/settings");
+
+            setBaseCurrency(
+                response.data.baseCurrency
+            );
+
+            setSelectedCurrencies(
+                response.data.selectedCurrencies
+                    .split(",")
+            );
+        }
+        catch (err) {
+            console.log(err);
+        }
     };
 
     const loadCurrencies = async () => {
@@ -159,31 +183,29 @@ function DashboardPage() {
     };
 
     useEffect(() => {
-        const savedBase =
-            localStorage.getItem("baseCurrency");
-
-        const savedCurrencies =
-            localStorage.getItem("selectedCurrencies");
-
         const savedLanguage =
             localStorage.getItem("language");
-
-        if (savedBase)
-            setBaseCurrency(savedBase);
-
-        if (savedCurrencies) {
-            setSelectedCurrencies(
-                JSON.parse(savedCurrencies)
-            );
-        }
 
         if (savedLanguage)
             setLanguage(savedLanguage);
 
         loadCurrencies();
-
-        loadData();
+        loadSettings();
     }, []);
+
+    useEffect(() => {
+        if (
+            baseCurrency &&
+            selectedCurrencies.length > 0
+        ) {
+            loadData();
+        }
+    }, [
+        baseCurrency,
+        selectedCurrencies,
+        startDate,
+        endDate,
+    ]);
 
     return (
         <div>
@@ -227,17 +249,17 @@ function DashboardPage() {
                     }}
                 >
                     <ResultsPanel
-                    strongest={strongest}
-                    weakest={weakest}
-                    averages={averages}
-                    t={t}
-                />
+                        strongest={strongest}
+                        weakest={weakest}
+                        averages={averages}
+                        t={t}
+                    />
 
-                <CurrencyChart
-                    data={chartData}
-                    symbols={symbols}
-                    t={t}
-                />
+                    <CurrencyChart
+                        data={chartData}
+                        symbols={symbols}
+                        t={t}
+                    />
                 </div>
             </div>
         </div>
