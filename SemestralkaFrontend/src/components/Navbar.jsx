@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ t }) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -21,7 +21,7 @@ function Navbar() {
             <h2>Currency Dashboard</h2>
 
             <button onClick={handleLogout}>
-                Logout
+                {t.logout}
             </button>
         </div>
     );

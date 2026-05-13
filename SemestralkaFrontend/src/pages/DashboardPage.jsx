@@ -187,13 +187,14 @@ function DashboardPage() {
 
     return (
         <div>
-            <Navbar />
+            <Navbar t={t} />
 
             <ErrorPanel
                 error={error}
                 usingCache={usingCache}
                 lastUpdated={lastUpdated}
                 onRetry={loadData}
+                t={t}
             />
 
             <div
@@ -226,15 +227,17 @@ function DashboardPage() {
                     }}
                 >
                     <ResultsPanel
-                        strongest={strongest}
-                        weakest={weakest}
-                        averages={averages}
-                    />
+                    strongest={strongest}
+                    weakest={weakest}
+                    averages={averages}
+                    t={t}
+                />
 
-                    <CurrencyChart
-                        data={chartData}
-                        symbols={symbols}
-                    />
+                <CurrencyChart
+                    data={chartData}
+                    symbols={symbols}
+                    t={t}
+                />
                 </div>
             </div>
         </div>

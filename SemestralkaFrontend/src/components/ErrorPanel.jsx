@@ -1,9 +1,9 @@
-
 function ErrorPanel({
     error,
     usingCache,
     lastUpdated,
     onRetry,
+    t,
 }) {
     if (!error && !usingCache)
         return null;

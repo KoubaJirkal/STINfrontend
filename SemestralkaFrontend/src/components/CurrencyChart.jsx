@@ -9,7 +9,7 @@ import {
     ResponsiveContainer,
 } from "recharts";
 
-function CurrencyChart({ data, symbols }) {
+function CurrencyChart({ data, symbols, t }) {
     return (
         <div
             style={{
@@ -18,7 +18,7 @@ function CurrencyChart({ data, symbols }) {
                 marginTop: "20px",
             }}
         >
-            <h2>Exchange Rate History</h2>
+            <h2>{t.exchangeRateHistory}</h2>
 
             <ResponsiveContainer>
                 <LineChart data={data}>
