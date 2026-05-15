@@ -8,10 +8,10 @@ function App() {
             <section className="hero">
                 <img src={me} alt="Me" className="profile-image" />
 
-                <h1>Kuba Jirkal</h1>
+                <h1>Jakub Jirkal</h1>
 
                 <p className="subtitle">
-                    Applied Informatics Student • Developer • Gamer
+                    IT Student • Developer • Graphics Enthusiast • Gamer
                 </p>
             </section>
 
@@ -60,6 +60,36 @@ function App() {
                     <span>Git</span>
                 </div>
             </section>
+            <section className="card">
+                <h2>Projects</h2>
+
+                <div className="project">
+                    <h3>Procedural Cave Generation</h3>
+
+                    <p>
+                        Procedural generation and rendering of cave systems
+                        using custom algorithms and graphics programming.
+                    </p>
+                </div>
+
+                <div className="project">
+                    <h3>First Person RPG Game</h3>
+
+                    <p>
+                        RPG game developed in Unity with first person combat,
+                        exploration and inventory systems.
+                    </p>
+                </div>
+
+                <div className="project">
+                    <h3>PhotoKok</h3>
+
+                    <p>
+                        Photo gallery web application focused on image
+                        management and responsive frontend design.
+                    </p>
+                </div>
+            </section>
 
             <section className="card">
                 <h2>Gaming & Achievements</h2>
@@ -76,8 +106,8 @@ function App() {
             <section className="card">
                 <h2>Contact</h2>
 
-                <p>Email: kuba@example.com</p>
-                <p>GitHub: github.com/yourgithub</p>
+                <p>Email: kuba.jirkal@gmail.com</p>
+                <p>GitHub: github.com/KoubaJirkal</p>
             </section>
 
         </div>
